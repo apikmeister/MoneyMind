@@ -8,6 +8,7 @@ const database = getDatabase(app);
 
 // Get the login form
 const loginButton = document.getElementById("loginButton");
+const errorMessage = document.getElementById("errorMessage");
 
 // Add submit event listener to the login form
 loginButton.addEventListener("click", (e) => {
@@ -30,10 +31,14 @@ loginButton.addEventListener("click", (e) => {
           window.location.href = "index.html";
         } else {
           console.log("User data not found");
+          errorMessage.classList.remove("hidden");
+          errorMessage.textContent = "User data not found"
         }
       });
     })
     .catch((error) => {
       console.log(error.message);
+      errorMessage.classList.remove("hidden");
+      errorMessage.textContent = error.message;
     });
 });

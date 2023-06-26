@@ -13,6 +13,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
     <style>
       @import url("https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css");
+      @import url(https://pro.fontawesome.com/releases/v5.10.0/css/all.css);
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;800&display=swap");
+      body {
+        font-family: "Poppins", sans-serif;
+      }
     </style>
   </head>
   <body>
@@ -27,45 +32,11 @@
       </div>
       <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
         <div class="text-center mb-10">
-          <h1 class="font-bold text-3xl text-gray-900">REGISTER</h1>
+          <h1 class="font-bold text-3xl text-gray-900">LOGIN</h1>
           <p>Enter your information to register</p>
         </div>
 
         <div>
-          <div class="flex -mx-3">
-            <!-- <div class="w-1/2 px-3 mb-5">
-              <label for="" class="text-xs font-semibold px-1"
-                >First name</label
-              >
-              <div class="flex">
-                <div
-                  class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
-                >
-                  <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
-                </div>
-                <input
-                  type="text"
-                  class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-emerald-400"
-                  placeholder="John"
-                />
-              </div>
-            </div>
-            <div class="w-1/2 px-3 mb-5">
-              <label for="" class="text-xs font-semibold px-1">Last name</label>
-              <div class="flex">
-                <div
-                  class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center"
-                >
-                  <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
-                </div>
-                <input
-                  type="text"
-                  class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-emerald-400"
-                  placeholder="Smith"
-                />
-              </div>
-            </div> -->
-          </div>
           <div class="flex -mx-3">
             <div class="w-full px-3 mb-5">
               <label for="email" class="text-xs font-semibold px-1"
@@ -116,6 +87,7 @@
               </button>
             </div>
           </div>
+          <span id="errorMessage" class="mdi mdi-alert-outline text-red-600 flex justify-center hidden"></span>
         </div>
       </div>
     </div>

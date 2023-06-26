@@ -8,6 +8,7 @@ const database = getDatabase(app);
 
 // Get the register form
 const registerButton = document.getElementById("registerButton");
+const errorMessage = document.getElementById("errorMessage");
 
 // Add submit event listener to the register form
 registerButton.addEventListener("click", (e) => {
@@ -35,9 +36,15 @@ registerButton.addEventListener("click", (e) => {
         })
         .catch((error) => {
           console.log("Failed to create user entry:", error.message);
+          errorMessage.classList.remove("hidden");
+          errorMessage.textContent = error.message;
+          // document.getElementById("mdi-alert-outline").innerHTML = error.message;
         });
     })
     .catch((error) => {
       console.log(error.message);
+      errorMessage.classList.remove("hidden");
+      errorMessage.textContent = error.message;
+      // document.getElementById("mdi-alert-outline").innerHTML = error.message;
     });
 });
