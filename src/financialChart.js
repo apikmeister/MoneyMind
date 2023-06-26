@@ -30,12 +30,20 @@ function updateChart(data) {
   const savings = data?.savings || 0;
   const expenses = data?.expenses || 0;
 
+  const totalMoney = document.getElementById("totalMoney");
+  const totalSavings = document.getElementById("totalSavings");
+  const totalExpenses = document.getElementById("totalExpenses");
+
   const ctx = document.getElementById("pieChart").getContext("2d");
 
   // Calculate percentage of savings and expenses
   const total = savings + expenses;
   const savingsPercentage = (savings / total) * 100;
   const expensesPercentage = (expenses / total) * 100;
+
+  totalMoney.textContent = `Total: $${total}`;
+  totalSavings.textContent = `Savings: $${savings}`;
+  totalExpenses.textContent = `Expenses: $${expenses}`;
 
   // Destroy the chart if it already exists
   if (chartInstance) {
