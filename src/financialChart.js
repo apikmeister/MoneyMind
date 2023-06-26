@@ -104,20 +104,6 @@ function updateData(savings, expenses) {
   })
 }
 
-// Add event listeners to the buttons
-// document.getElementById("addExpenseBtn").addEventListener("click", () => {
-//   const expense = parseInt(prompt("Enter expense amount:") || 0);
-//   updateData(0, expense);
-// });
-
-// document.getElementById("addSavingsBtn").addEventListener("click", () => {
-//   const savings = parseInt(prompt("Enter savings amount:") || 0);
-//   updateData(savings, 0);
-// });
-
-// // Retrieve initial data and update the chart
-// retrieveData();
-
 function showBottomSheet() {
   const bottomSheet = document.getElementById("bottomSheet");
   bottomSheet.classList.remove("hidden");

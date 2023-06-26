@@ -12,7 +12,6 @@ const errorMessage = document.getElementById("errorMessage");
 
 // Add submit event listener to the login form
 loginButton.addEventListener("click", (e) => {
-  // e.preventDefault();
 
   // Get user credentials from the form
   const email = document.getElementById("email").value;
