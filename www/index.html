@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="dist/output.css" />
+    <style>
+      @import url(https://pro.fontawesome.com/releases/v5.10.0/css/all.css);
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;800&display=swap");
+      body {
+        font-family: "Poppins", sans-serif;
+      }
+      .hover\:w-full:hover {
+        width: 100%;
+      }
+      .group:hover .group-hover\:w-full {
+        width: 100%;
+      }
+      .group:hover .group-hover\:inline-block {
+        display: inline-block;
+      }
+      .group:hover .group-hover\:flex-grow {
+        flex-grow: 1;
+      }
+      canvas {
+        max-width: 100%;
+        margin: 0 auto;
+      }
+      .bottom-sheet {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        max-height: 80vh;
+        background-color: #fff;
+        padding: 16px;
+        box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+
+      .bottom-sheet.hidden {
+        max-height: 0;
+      }
+
+      .bottom-sheet-content {
+        overflow-y: auto;
+        margin-bottom: 16px;
+      }
+
+      .bottom-sheet-handle {
+        height: 8px;
+        width: 40px;
+        margin: 0 auto;
+        background-color: #ccc;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="min-w-screen min-h-screen bg-gray-100 flex flex-col items-center justify-center px-5 pt-5 pb-24"
+    >
+      <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold mb-4">Financial App</h1>
+
+        <!-- <div class="flex justify-between mb-4">
+          <button
+            id="addSavingsBtn"
+            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+          >
+            Add Savings
+          </button>
+          <button
+            id="addExpenseBtn"
+            class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+          >
+            Add Expense
+          </button>
+        </div> -->
+
+        <div>
+          <canvas id="pieChart"></canvas>
+        </div>
+
+        <button
+          id="addButton"
+          class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded mt-4"
+        >
+          Add
+        </button>
+
+        <div id="bottomSheet" class="bottom-sheet hidden">
+          <div class="bottom-sheet-content">
+            <h2 class="text-xl font-bold mb-2">Add Expense or Savings</h2>
+            <input
+              id="amountInput"
+              type="number"
+              placeholder="Enter amount"
+              class="border border-gray-300 rounded py-2 px-3 mb-2"
+            />
+            <div class="flex justify-end">
+              <button
+                id="addExpenseBtn"
+                class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mr-2"
+              >
+                Add Expense
+              </button>
+              <button
+                id="addSavingsBtn"
+                class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+              >
+                Add Savings
+              </button>
+            </div>
+          </div>
+          <div id="bottomSheetHandle" class="bottom-sheet-handle"></div>
+        </div>
+      </div>
+
+      <div class="px-7 bg-white shadow-lg rounded-2xl">
+        <div class="flex">
+          <div class="flex-1 group">
+            <a
+              href="#"
+              class="flex items-end justify-center text-center mx-auto px-4 pt-2 w-full text-gray-400 group-hover:text-emerald-500"
+            >
+              <span class="block px-1 pt-1 pb-1">
+                <i class="far fa-home text-2xl pt-1 mb-1 block"></i>
+                <span class="block text-xs pb-2">Home</span>
+                <span
+                  class="block w-5 mx-auto h-1 group-hover:bg-emerald-500 rounded-full"
+                ></span>
+              </span>
+            </a>
+          </div>
+          <div class="flex-1 group">
+            <a
+              href="#"
+              class="flex items-end justify-center text-center mx-auto px-4 pt-2 w-full text-gray-400 group-hover:text-emerald-500"
+            >
+              <span class="block px-1 pt-1 pb-1">
+                <i class="far fa-compass text-2xl pt-1 mb-1 block"></i>
+                <span class="block text-xs pb-2">Explore</span>
+                <span
+                  class="block w-5 mx-auto h-1 group-hover:bg-emerald-500 rounded-full"
+                ></span>
+              </span>
+            </a>
+          </div>
+          <div class="flex-1 group">
+            <a
+              href="#"
+              class="flex items-end justify-center text-center mx-auto px-4 pt-2 w-full text-gray-400 group-hover:text-emerald-500"
+            >
+              <span class="block px-1 pt-1 pb-1">
+                <i class="far fa-search text-2xl pt-1 mb-1 block"></i>
+                <span class="block text-xs pb-2">Search</span>
+                <span
+                  class="block w-5 mx-auto h-1 group-hover:bg-emerald-500 rounded-full"
+                ></span>
+              </span>
+            </a>
+          </div>
+          <div class="flex-1 group">
+            <a
+              href="#"
+              class="flex items-end justify-center text-center mx-auto px-4 pt-2 w-full text-gray-400 group-hover:text-emerald-500"
+            >
+              <span class="block px-1 pt-1 pb-1">
+                <i class="far fa-cog text-2xl pt-1 mb-1 block"></i>
+                <span class="block text-xs pb-2">Settings</span>
+                <span
+                  class="block w-5 mx-auto h-1 group-hover:bg-emerald-500 rounded-full"
+                ></span>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="dist/js/firebaseConfig.bundle.js"></script>
+    <script src="dist/js/financialChart.bundle.js"></script>
+  </body>
+</html>
